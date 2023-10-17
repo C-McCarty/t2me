@@ -11,25 +11,19 @@ const fs = require('fs');
 const request = require('request');
 const app = express();
 const cors = require('cors');
-
 const { spawn } = require('child_process');
-
-
-// const PORT = process.env.PORT || 5000;
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+app.use(express.json());
 // Permits the frontend to interact with the backend
 app.use(cors());
-app.use(express.json());
 
 // Default route
-app.get("/", (req, res, next) => {
-    res.send("<h1>The Middleman</h1>");
-});
+app.get("/", (req, res, next) => { res.send("<h1>The Middleman</h1>"); });
 
 // API to check submitted credentials for returning users
 app.post("/checkCredentialsAPI", (req, res, next) => {
     const { email, password } = req.body;
-    const python = spawn('python', ['./printTrue.py', email, password]);
+    const python = spawn('python', ['https://raw.githubusercontent.com/C-McCarty/test/main/printTrue.py', email, password]);
     let dataToSend;
 
     python.stdout.on('data', (data) => {
