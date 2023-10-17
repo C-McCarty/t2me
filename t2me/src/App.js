@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Header from './comp/MCCARTY/general/Header.js';
 import Main from './comp/MCCARTY/main/Main.js';
 import SignUpForm from './comp/MCCARTY/login/SignInForm.js';
 import appStyle from './comp/MCCARTY/CSS/classes.module.css';
@@ -12,17 +11,11 @@ function App() {
     // const [userPassword, setUserPassword] = useState("");
 
     if (signedIn) {
-        return (
-            <div>
-                <Header minimized={true} />
-                <Main user={userName} userID={userID} />
-            </div>
-        );
+        return <Main user={userName} userID={userID} />
     }
     else {
         return (
             <div className={appStyle.loginScreenWrapper}>
-                <Header />
                 <SignUpForm
                     setUserID={setUserID}
                     setUser={setUserName}

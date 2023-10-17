@@ -10,7 +10,7 @@
 .headerMini {
     width: 100vw;
     height: 3vh;
-    margin: 0 auto;
+    margin: 0 auto !important;
     padding: 0;
     background-image: linear-gradient(to right, white 3vw, #00ddff 50%, #9900ff 97vw);
     z-index: 100;
@@ -31,7 +31,6 @@
     flex-basis: 100%;
     height: 10vh;
     margin: 0 auto;
-    margin-bottom: 5vh;
     padding: 0;
     background-image: linear-gradient(to right, white, #00ddff, #9900ff);
     box-shadow: 0 0vh 1vh gray;
@@ -52,12 +51,14 @@
     background-size: contain;
 }
 .loginForm {
-    width: 40vw;
     display: flex;
     flex-wrap: wrap;
+    margin: 0 auto;
+    margin-top: 5vh;
     padding: 1vh;
     padding-left: 2vh;
     padding-right: 2vh;
+    width: 40vw;
     border-radius: 5vh;
     justify-content: flex-end;
     box-shadow: 1vh 2vh 4vh rgba(50, 50, 50, 0.5);
@@ -136,7 +137,7 @@
     width: 30vh;
     font-size: 2vh;
     -webkit-box-shadow: 0 0 0 3vh white inset !important;
-    box-shadow: 0 0 3vh white inset !important;
+    box-shadow: 0 0 0 3vh white inset !important;
 }
 .invalidInput {
     border-color: rgb(255, 0, 0) !important;

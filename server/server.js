@@ -12,6 +12,7 @@ const request = require('request');
 const app = express();
 const cors = require('cors');
 const { spawn } = require('child_process');
+const axios = require('axios');
 const PORT = process.env.PORT || 5000;
 app.use(express.json());
 // Permits the frontend to interact with the backend
@@ -20,10 +21,23 @@ app.use(cors());
 // Default route
 app.get("/", (req, res, next) => { res.send("<h1>The Middleman</h1>"); });
 
+// GET Python file from external source
+let pythonScript = '';
+axios.get('https://raw.githubusercontent.com/C-McCarty/test/main/printTrue.py')
+.then((response) => {
+    pythonScript = response.data;
+})
+.catch((error) => {
+    console.log(error);
+});
+fs.writeFile('localfile.py', pythonScript, (err) => {
+    if (err) throw err;
+});
+
 // API to check submitted credentials for returning users
 app.post("/checkCredentialsAPI", (req, res, next) => {
     const { email, password } = req.body;
-    const python = spawn('python', ['https://raw.githubusercontent.com/C-McCarty/test/main/printTrue.py', email, password]);
+    const python = spawn('python', ['localfile.py', email, password]);
     let dataToSend;
 
     python.stdout.on('data', (data) => {

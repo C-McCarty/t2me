@@ -1,8 +1,9 @@
 import Sidebar from "./Sidebar";
 import MenuTray from "./MenuTray";
-import c from "../CSS/chatClasses.module.css";
 import ChatWindow from "./ChatWindow";
 import LoadingScreen from "./LoadingScreen";
+import Header from "../general/Header";
+import c from "../CSS/chatClasses.module.css";
 import { useState, useEffect } from "react";
 
 
@@ -60,36 +61,44 @@ function Main({ user, userID }) {
         setCurrentChatColor(z);
     }
     if (loading) {
-        return <LoadingScreen />
+        return (
+            <>
+                <Header minimized={true} />
+                <LoadingScreen />
+            </>
+        )
     }
 
     return (
-        <div className={c.mainWrap} style={{height: MAIN_CONTENT_HEIGHT}}>
-            <MenuTray />
-            {loading ? null :
-            <Sidebar
-                userID={userID}
-                setCurrentChatData={setCurrentChatData}
-                currentChatHistory={currentChatHistory}
-                chatData={chatData}
-                isLoading={loading}
-                />
-            }
-            <div className={c.mainContent}>
+        <>
+            <Header minimized={true} />
+            <div className={c.mainWrap} style={{height: MAIN_CONTENT_HEIGHT}}>
+                <MenuTray />
                 {loading ? null :
-                <ChatWindow
-                            user={user}
-                            chatID={currentChatID}
-                            chatName={currentChatName}
-                            chatColor={currentChatColor}
-                            userID={userID}
-                            setChatData={setCurrentChatData}
-                            currentChatHistory={currentChatHistory}
-                            isLoading={loading}
-                                />
+                <Sidebar
+                    userID={userID}
+                    setCurrentChatData={setCurrentChatData}
+                    currentChatHistory={currentChatHistory}
+                    chatData={chatData}
+                    isLoading={loading}
+                    />
                 }
+                <div className={c.mainContent}>
+                    {loading ? null :
+                    <ChatWindow
+                                user={user}
+                                chatID={currentChatID}
+                                chatName={currentChatName}
+                                chatColor={currentChatColor}
+                                userID={userID}
+                                setChatData={setCurrentChatData}
+                                currentChatHistory={currentChatHistory}
+                                isLoading={loading}
+                                    />
+                    }
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

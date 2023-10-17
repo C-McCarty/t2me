@@ -1,12 +1,13 @@
 // Cameron McCarty
 // 09/11/2023
 
-
 import { useState, useEffect } from 'react';
-import formClass from '../CSS/classes.module.css';
+
 import FormInput from './FormInput';
-import ResetPasswordPage from '../../TRAN/ResetPasswordPage';
 import LoadingScreen from '../main/LoadingScreen';
+import Header from '../general/Header';
+import ResetPasswordPage from '../../TRAN/ResetPasswordPage';
+import formClass from '../CSS/classes.module.css';
 
 function SignInForm({setUser, setPassword, setUserID, isSignedIn}) {
     //// useState declarations
@@ -63,10 +64,10 @@ function SignInForm({setUser, setPassword, setUserID, isSignedIn}) {
         setEmailValidation(false);
     }
     
-    function validatePwd() {
+    function validatePwd(x) {
         // Length, Upper, Lower, Number, No Spaces, All Valid
         setValidPwd([false, false, false, false, false, false]);
-        if (pwd === "") {
+        if (pwd === "" || x === 1) {
             setValidPwd([true, true, true, true, true, true]);
             return;
         }
@@ -87,8 +88,14 @@ function SignInForm({setUser, setPassword, setUserID, isSignedIn}) {
 
         setValidPwd([MeetsLenReq, MeetsUpperReq, MeetsLowerReq, MeetsNumReq, NoSpaces, MeetsAllReq]);
     }
+    function modifiedValidatePwd() {
+        validatePwd(1);
+    }
 
     function validateConfPwd() {
+        if (newUser === false) {
+            return;
+        }
         if (confpwd === pwd || confpwd === "") {
             setValidConfPwd(true);
             return;
@@ -131,7 +138,7 @@ function SignInForm({setUser, setPassword, setUserID, isSignedIn}) {
         else {
             setLoading(true);
 
-            fetch('/checkCredentialsAPI', {
+            fetch('https://t2me-middleman.onrender.com/checkCredentialsAPI', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -140,7 +147,7 @@ function SignInForm({setUser, setPassword, setUserID, isSignedIn}) {
             }).then((response) => {
                 return response.json();
             }).then((data) => {
-                console.log(data.validCredentials);
+                console.log(data);
                 setBackendValidated(data.validCredentials);
                 setLoading(false);
                 if (!backendValidated) {
@@ -161,6 +168,7 @@ function SignInForm({setUser, setPassword, setUserID, isSignedIn}) {
                         setUser(data.userName);
                         setUserID(data.userID);
                         setPassword(pwd);
+                        clearInputs();
                     }
                     ).catch(error => { console.log("Error:", error) });
                     
@@ -170,7 +178,6 @@ function SignInForm({setUser, setPassword, setUserID, isSignedIn}) {
                 isSignedIn(true);
             }
         }
-        clearInputs();
     }
     //// Reset function
     function clearInputs() {
@@ -192,183 +199,200 @@ function SignInForm({setUser, setPassword, setUserID, isSignedIn}) {
         clearInputs();
     }
 
-    // Generate JSX
+    /*************************************************************** Generate JSX **************************************************************/
+
     if (isLoading) {
-        return <LoadingScreen />
+        return (
+            <>
+                <Header minimized={true} />
+                <LoadingScreen />
+            </>
+        );
     }
 
 
     //////////////////////////////////////////////////////////// Password Reset Page ////////////////////////////////////////////////////////////
     if (resetPasswordState) {
         return (
-            <ResetPasswordPage />
+            <>
+                <Header />
+                <ResetPasswordPage />
+            </>
         )
     }
     //////////////////////////////////////// Email Sent Confirmation Page (Used for Sign Up and Forgot Password pages) ////////////////////////////////////////
     else if (emailSent) {
         return (
-            <div id='formWrapper' className={formClass.loginForm}>
-            <div className={formClass.formSwapper}>
-                <button className={formClass.forgotPwdBackButton} onClick={forgotPwd}>Go Back</button>
-            </div>
-            <div className={formClass.formLogo}></div>
-                <h2>Email Sent!</h2>
-                <div className={formClass.confirmation}>
-                    <p>An email has been sent to: {email}. The email will be sent within the next few minutes. Please follow the instructions in the email once you receive it.</p>
+            <>
+                <Header />
+                <div id='formWrapper' className={formClass.loginForm}>
+                    <div className={formClass.formSwapper}>
+                        <button className={formClass.forgotPwdBackButton} onClick={forgotPwd}>Go Back</button>
+                    </div>
+                    <div className={formClass.formLogo} />
+                    <h2>Email Sent!</h2>
+                    <div className={formClass.confirmation}>
+                        <p>An email has been sent to: {email}. The email will be sent within the next few minutes. Please follow the instructions in the email once you receive it.</p>
+                    </div>
                 </div>
-            </div>
+            </>
         )
     }
     ////////////////////////////////////////////////// Forgot Password Page (Password Reset Request form) //////////////////////////////////////////////////
     else if (forgotPassword) {
         return (
-            <div id='formWrapper' className={formClass.loginForm}>
-                {/* //////////////////// Form Swapper Button //////////////////// */}
-                <div className={formClass.formSwapper}>
-                    <button className={formClass.forgotPwdBackButton} onClick={forgotPwd}>Go Back</button>
-                </div>
-                {/* //////////////////// Logo and Title //////////////////// */}
-                <div className={formClass.formLogo}></div>
-                <h2>Forgot Password</h2>
-                {/* //////////////////// Forgot Password Form //////////////////// */}
-                <form id='SignUpForm' onSubmit={handleSubmit}>
-                    <div className={formClass.inpWrap}>
-                        <div className={formClass.formInput}>
-                            <FormInput
-                                inpType="email"
-                                changeFunc={handleEmail}
-                                val={email}
-                                blurFunc={validateEmail}
-                                isValid={validEmail}
-                                />
-                            {validEmail ? null : <p className={formClass.invalid}>Invalid Email</p>}
+            <>
+                <Header />
+                <div id='formWrapper' className={formClass.loginForm}>
+                    {/* //////////////////// Form Swapper Button //////////////////// */}
+                    <div className={formClass.formSwapper}>
+                        <button className={formClass.forgotPwdBackButton} onClick={forgotPwd}>Go Back</button>
+                    </div>
+                    {/* //////////////////// Logo and Title //////////////////// */}
+                    <div className={formClass.formLogo} />
+                    <h2>Forgot Password</h2>
+                    {/* //////////////////// Forgot Password Form //////////////////// */}
+                    <form id='SignUpForm' onSubmit={handleSubmit}>
+                        <div className={formClass.inpWrap}>
+                            <div className={formClass.formInput}>
+                                <FormInput
+                                    inpType="email"
+                                    changeFunc={handleEmail}
+                                    val={email}
+                                    blurFunc={validateEmail}
+                                    isValid={validEmail}
+                                    />
+                                {validEmail ? null : <p className={formClass.invalid}>Invalid Email</p>}
+                            </div>
                         </div>
-                    </div>
-                    <div className={formClass.submitBtnWrap}>
-                        <button className={formClass.submitBtn} type='submit'>Send</button>
-                    </div>
-                </form>
-            </div>
+                        <div className={formClass.submitBtnWrap}>
+                            <button className={formClass.submitBtn} type='submit'>Send</button>
+                        </div>
+                    </form>
+                </div>
+            </>
         )
     }
     //////////////////////////////////////////////////////////// Sign Up Page ////////////////////////////////////////////////////////////
     else if (newUser) {
         return (
-            <div id='formWrapper' className={formClass.loginForm} data-testid="SUE">
-                {/* //////////////////// Form Swapper Button //////////////////// */}
-                <div className={formClass.formSwapper}>
-                    <h3>Returning User? </h3>
-                    <button onClick={swapForm}>Sign In</button>
+            <>
+                <Header />
+                <div id='formWrapper' className={formClass.loginForm} data-testid="SUE">
+                    {/* //////////////////// Form Swapper Button //////////////////// */}
+                    <div className={formClass.formSwapper}>
+                        <h3>Returning User? </h3>
+                        <button onClick={swapForm}>Sign In</button>
+                    </div>
+                    {/* //////////////////// Logo and Title //////////////////// */}
+                    <div className={formClass.formLogo}></div>
+                    <h2>Sign Up</h2>
+                    {/* //////////////////// Sign Up Form //////////////////// */}
+                    <form id='SignUpForm' className={formClass.formGrid} onSubmit={handleSubmit}>
+                        <div className={formClass.inpWrap}>
+                            <div className={formClass.formInput}>
+                                <FormInput
+                                    inpType="email"
+                                    changeFunc={handleEmail}
+                                    val={email}
+                                    blurFunc={validateAll}
+                                    isValid={validEmail}
+                                    />
+                                {validEmail ? null : <p className={formClass.invalid}>Invalid Email</p>}
+                            </div>
+                            <div className={formClass.formInput}>
+                                <FormInput
+                                    inpType={"password"}
+                                    changeFunc={handlePwd}
+                                    val={pwd}
+                                    blurFunc={validateAll}
+                                    isValid={validPwd[5]}
+                                    sizeReq={true}
+                                    />
+                                {
+                                    validPwd[5] ? null : <div className={formClass.invalid}>
+                                        <p>Password requires the following:</p>
+                                        <ul>
+                                            {validPwd[0] ? <></> : <li>Must be between 8-20 characters</li>}
+                                            {validPwd[1] ? <></> : <li>An Uppercase Letter</li>}
+                                            {validPwd[2] ? <></> : <li>A Lowercase Letter</li>}
+                                            {validPwd[3] ? <></> : <li>A number</li>}
+                                        </ul>
+                                    </div>
+                                }
+                            </div>
+                            <div className={formClass.formInput}>
+                                <FormInput 
+                                    inpType="confpwd"
+                                    name="confpwd"
+                                    changeFunc={handleConfPwd}
+                                    val={confpwd}
+                                    blurFunc={validateAll}
+                                    isValid={validConfPwd}
+                                    />
+                                {validConfPwd ? null : <p className={formClass.invalid}>Passwords do not match</p>}
+                            </div>
+                        </div>
+                        <div className={formClass.submitBtnWrap}>
+                            <button className={formClass.submitBtn} type='submit' data-testid="SUB" >Sign Up</button>
+                        </div>
+                    </form>
                 </div>
-                {/* //////////////////// Logo and Title //////////////////// */}
-                <div className={formClass.formLogo}></div>
-                <h2>Sign Up</h2>
-                {/* //////////////////// Sign Up Form //////////////////// */}
-                <form id='SignUpForm' className={formClass.formGrid} onSubmit={handleSubmit}>
-                    <div className={formClass.inpWrap}>
-                        <div className={formClass.formInput}>
-                            <FormInput
-                                inpType="email"
-                                changeFunc={handleEmail}
-                                val={email}
-                                blurFunc={validateAll}
-                                isValid={validEmail}
-                                />
-                            {validEmail ? null : <p className={formClass.invalid}>Invalid Email</p>}
-                        </div>
-                        <div className={formClass.formInput}>
-                            <FormInput
-                                inpType={"password"}
-                                changeFunc={handlePwd}
-                                val={pwd}
-                                blurFunc={validateAll}
-                                isValid={validPwd[5]}
-                                />
-                            {
-                                validPwd[5] ? null : <div className={formClass.invalid}>
-                                    <p>Password requires the following:</p>
-                                    <ul>
-                                        {validPwd[0] ? <></> : <li>Must be between 8-20 characters</li>}
-                                        {validPwd[1] ? <></> : <li>An Uppercase Letter</li>}
-                                        {validPwd[2] ? <></> : <li>A Lowercase Letter</li>}
-                                        {validPwd[3] ? <></> : <li>A number</li>}
-                                    </ul>
-                                </div>
-                            }
-                        </div>
-                        <div className={formClass.formInput}>
-                            <FormInput 
-                                inpType="confpwd"
-                                name="confpwd"
-                                changeFunc={handleConfPwd}
-                                val={confpwd}
-                                blurFunc={validateAll}
-                                isValid={validConfPwd}
-                                />
-                            {validConfPwd ? null : <p className={formClass.invalid}>Passwords do not match</p>}
-                        </div>
-                    </div>
-                    <div className={formClass.submitBtnWrap}>
-                        <button className={formClass.submitBtn} type='submit' data-testid="SUB" >Sign Up</button>
-                    </div>
-                </form>
-            </div>
+            </>
         );
     }
     //////////////////////////////////////////////////////////// Sign In Page ////////////////////////////////////////////////////////////
     else {
         return (
-            <div id='formWrapper' className={formClass.loginForm} data-testid="SIE">
-                {/* //////////////////// Form Swapper Button //////////////////// */}
-                <div className={formClass.formSwapper}>
-                    <h3>New here? </h3>
-                    <button onClick={swapForm}>Sign Up</button>
+            <>
+                <Header />
+                <div id='formWrapper' className={formClass.loginForm} data-testid="SIE">
+                    {/* //////////////////// Form Swapper Button //////////////////// */}
+                    <div className={formClass.formSwapper}>
+                        <h3>New here? </h3>
+                        <button onClick={swapForm}>Sign Up</button>
+                    </div>
+                    {/* //////////////////// Logo and Title //////////////////// */}
+                    <div className={formClass.formLogo}></div>
+                    <h2>Sign In</h2>
+                    {/* //////////////////// Sign In Form //////////////////// */}
+                    <form id='SignInForm' className={formClass.formGrid} onSubmit={handleSubmit}>
+                        <div className={formClass.inpWrap}>
+                            <div className={formClass.formInput}>
+                                <FormInput
+                                    inpType="email"
+                                    changeFunc={handleEmail}
+                                    val={email}
+                                    blurFunc={validateEmail}
+                                    isValid={Boolean(validPwd[5] * validEmail)}
+                                    />
+                                {validEmail ? null : <p className={formClass.invalid}>Invalid Email</p>}
+                            </div>
+                        
+                            <div className={formClass.formInput}>
+                                <FormInput
+                                    inpType="password"
+                                    changeFunc={handlePwd}
+                                    val={pwd}
+                                    isValid={validPwd[5]}
+                                    blurFunc={modifiedValidatePwd}
+                                    sizeReq={false}
+                                    />
+                                {
+                                    validPwd[5] ? null : <div className={formClass.invalid}>
+                                        <p>Email or Password is incorrect.</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <button className={formClass.submitBtn} type='submit' data-testid="SBE">Sign In</button>
+                        <div className={formClass.forgotPwdSection}>
+                            <p>Forgot password?</p>
+                            <button className={formClass.forgotPwdButton} onClick={forgotPwd}>Reset Password</button>
+                        </div>
+                    </form>
                 </div>
-                {/* //////////////////// Logo and Title //////////////////// */}
-                <div className={formClass.formLogo}></div>
-                <h2>Sign In</h2>
-                {/* //////////////////// Sign In Form //////////////////// */}
-                <form id='SignInForm' className={formClass.formGrid} onSubmit={handleSubmit}>
-                    <div className={formClass.inpWrap}>
-                        <div className={formClass.formInput}>
-                            <FormInput
-                                inpType="email"
-                                changeFunc={handleEmail}
-                                val={email}
-                                blurFunc={validateAll}
-                                isValid={validEmail}
-                                />
-                            {validEmail ? null : <p className={formClass.invalid}>Invalid Email</p>}
-                        </div>
-                    
-                        <div className={formClass.formInput}>
-                            <FormInput
-                                inpType="password"
-                                changeFunc={handlePwd}
-                                val={pwd}
-                                blurFunc={validateAll}
-                                isValid={validPwd[5]}
-                                />
-                            {
-                                validPwd[5] ? null : <div className={formClass.invalid}>
-                                    <p>Password requires the following:</p>
-                                    <ul>
-                                        {validPwd[0] ? <></> : <li>Must be between 8-20 characters</li>}
-                                        {validPwd[1] ? <></> : <li>An Uppercase Letter</li>}
-                                        {validPwd[2] ? <></> : <li>A Lowercase Letter</li>}
-                                        {validPwd[3] ? <></> : <li>A number</li>}
-                                    </ul>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                    <button className={formClass.submitBtn} type='submit' data-testid="SBE">Sign In</button>
-                    <div className={formClass.forgotPwdSection}>
-                        <p>Forgot password?</p>
-                        <button className={formClass.forgotPwdButton} onClick={forgotPwd}>Reset Password</button>
-                    </div>
-                </form>
-            </div>
+            </>
         )
     }
 }

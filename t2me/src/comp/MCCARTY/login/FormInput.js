@@ -18,7 +18,7 @@ function FormInput(props) {
                     value={props.val}
                     onBlur={props.blurFunc}
                     maxLength={20}
-                    minLength={8}
+                    minLength={props.sizeReq ? 8 : 0}
                     required={true}
                     />
             </div>
