@@ -1,0 +1,36 @@
+.LoadingScreen {
+    width: 100vw;
+    height: 97vh;
+}
+.LoadingScreen > h2 {
+    margin-top: 42vh;
+    width: 100%;
+    text-align: center;
+}
+.LoadingScreen > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 50%;
+}
+.spinner {
+    width: 10vh;
+    height: 10vh;
+    background-image: url(../../../media/icons/loading.svg);
+    background-size: 10vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+    animation-name: spin;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

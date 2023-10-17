@@ -1,0 +1,19 @@
+{
+    "chatHistories": [
+        [1, 2, 2, "2023,10,6,18,53,30", "This is a test"],
+        [2, 2, 2, "2023,10,6,18,53,30", "I agree"],
+        [3, 4, 2, "2023,10,6,18,53,30", "..."],
+        [4, 2, 3, "2023,10,6,18,53,30", "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure a, libero voluptatum illum corporis soluta nihil deleniti aliquam vitae, hic nisi. Omnis eum fugiat accusantium iste qui temporibus. Nulla, adipisci?"],
+        [5, 2, 0, "2023,10,6,18,53,30", "The endoplasmic reticulum does not harbor an ATP-regeneration machinery, and therefore requires ATP import from mitochondria. The imported ATP is vital for the ER to carry out its house keeping cellular functions, such as for protein folding and trafficking."],
+        [6, 2, 3, "2023,10,6,18,53,30", "Men's synchronized 10 metre platform event at the 2019 European Diving Championships was contested on 8 August."],
+        [7, 2, 0, "2023,10,6,18,53,30", "No railway was ever built through Oteramika, but at one point, the Kapuka railway station on the Tokanui Branch was named Oteramika. This station opened on 1 March 1895, closed to passengers on 1 June 1960, and closed to all traffic on 31 March 1966."],
+        [8, 2, 0, "2023,10,6,18,53,30", "Portlaoise were the defending champions after they defeated Ballylinan in the previous years final. They successfully defended their title to claim a \"2-in-a-row\" of victories when they defeated O'Dempsey's in this years final.\nEmo made a straight return to the senior grade after just one year outside the top flight.\nThis was the second season running in which Clonaslee–St Manman's amalgamated with Annanough for their championship matches as Clonaslee Gaels (however unlike 2017, Annanough didn't field a side in the 2018 I.F.C.). Both clubs fielded separate reserve sides in the Laois J.F.C. 'C'. The amalgamation suffered relegation at the end of the 2018 campaign and so will ply their trade in the 2019 I.F.C."],
+        [9, 3, 0, "2023,10,6,18,53,30", "This is a test"]
+    ],
+    "chatData": [
+        [1, "Announcements", ["#00ddff","#9900ff"]],
+        [2, "Chat 2", ["#0000ff","#ff0000"]],
+        [3, "Chat 3", ["#ffffff","#000000"]],
+        [4, "Chat 4", ["#00ff00","#000000"]]
+    ]
+}

@@ -1,0 +1,37 @@
+.chatListItemWrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    font-size: 2vh;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    background: white;
+    transition: background 0.25s;
+}
+.chatListItemWrap:hover {
+    background: rgb(230, 230, 230);
+    transition: background 0.25s;
+    cursor: pointer;
+}
+.chatListItemWrap p { flex-basis: 100%; }
+.chatListItemWrap h4 {
+    margin: 0 auto;
+    margin-left: 0.75vh;
+    padding: 0;
+}
+.separator { width: 80%; }
+
+.excerpt {
+    width: 100%;
+}
+.excerpt p {
+    margin-left: 1vh;
+    margin-right: 1vh;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 20vw;
+}

@@ -1,0 +1,24 @@
+/* * * * * *
+Color codes:
+#00ddff
+#0066c7
+#0192dd
+#9900ff
+* * * * * */
+
+@font-face {
+    font-family: Poppins;
+    src: url('../../../media/Poppins/Poppins-Regular.ttf');
+}
+@font-face {
+    font-family: openSans;
+    src: url('../../../media/modern_sans/ModernSans-Light.otf');
+}
+body {
+    overflow-x: hidden;
+}
+* {
+    font-family: Poppins, sans-serif;
+    box-sizing: border-box;
+}
+h1 { font-family: openSans, sans-serif !important; }

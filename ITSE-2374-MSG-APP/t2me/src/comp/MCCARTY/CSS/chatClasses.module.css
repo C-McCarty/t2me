@@ -1,0 +1,260 @@
+.mainWrap {
+    display: flex !important;
+    height: 97vh !important;
+    width: 100vw;
+}
+.menuTrayWrap {
+    width: 3vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 9vh;
+    padding-bottom: 8vh;
+    box-shadow: 0 1vh 1vh rgba(200, 200, 200, 0.75);
+    z-index: 3;
+}
+.sidebar {
+    height: 100%;
+    width: 20%;
+    overflow-y: scroll;
+    direction: rtl;
+}
+.sidebar > * { direction: ltr; }
+.sidebar::-webkit-scrollbar { background-color: white; }
+.sidebar::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(0, 221, 255, 0.5), rgba(153, 0, 255, 0.5));
+    transition: background 0.25s;
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, rgba(255,255,255,1), rgba(0, 221, 255, 1), rgba(153, 0, 255, 1));
+    transition: background 0.25s;
+}
+.sidebar h2 {
+    margin: 0 auto;
+    padding: 0;
+    padding-left: 10%;
+    flex-basis: 75%;
+    font-size: 3vh;
+}
+.mainContent {
+    height: 100%;
+    width: 77%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(230, 230, 230);
+}
+.messageList {
+    display: flex;
+    flex-direction: column;
+}
+.greeting {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+.greeting > * { flex-basis: 100%; }
+.logo {
+    width: 15vh;
+    height: 15vh;
+    background-image: url(../../../media/t2meLogo.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.sidebarHeader {
+    position: sticky;
+    top: 0;
+    background-image: linear-gradient(to bottom, white, white 75%, rgba(255,255,255, 0.5));
+    height: 9.7vh;
+    display: flex;
+    align-items: center;
+}
+.sidebarHeader > div {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10%;
+}
+.createChatBtn {
+    width: 3.5vh;
+    height: 3.5vh;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    border-radius: 1vh;
+    background-image: url(../../../media/icons/group-add.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.createChatBtn:hover { background-color: rgb(200, 200, 200); }
+.menuSpacer { height: 75% }
+
+.menuTrayWrap > button {
+    width: 3.5vh;
+    height: 3.5vh;
+    border: none;
+    border-radius: 25%;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.menuTrayWrap > button:hover { background-color: rgb(200, 200, 200); }
+
+.menuChatBtn { background-image: url(../../../media/icons/chat.svg); }
+.menuContactsBtn { background-image: url(../../../media/icons/group.svg); }
+.menuSettingsBtn { background-image: url(../../../media/icons/settings.svg); }
+.menuProfileBtn { background-image: url(../../../media/icons/person-settings.svg); }
+
+
+
+.chatWrapper {
+    width: 74.5vw;
+    height: 90%;
+    border-radius: 3vh 3vh 0 0;
+    background-color: white;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    box-shadow: 0 0 2vh rgba(0, 0, 0, 0.5);
+}
+.chatHeader {
+    margin: 0 auto;
+    padding: 0;
+    margin-top: 3%;
+    height: 7.5%;
+    background-color: rgba(255, 255, 255, 0.9);
+    flex-basis: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    box-shadow: 0 2vh 2vh rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+.chatHeader h2 {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+.chatClose {
+    margin: 0 auto;
+    padding: 0;
+    width: 3.5vh;
+    height: 3.5vh;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(../../../media/icons/close.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 8.5vh;
+    right: 3.75vh;
+}
+.chatSettings {
+    margin: 0 auto;
+    padding: 0;
+    width: 3.5vh;
+    height: 3.5vh;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(../../../media/icons/settings.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 3.5vh;
+}
+
+.messageBoxWrap {
+    margin: 0 auto;
+    padding: 0;
+    height: 17.5%;
+    flex-basis: 100%;
+    box-shadow: 0 -2vh 2vh rgba(0, 0, 0, 0.1);
+}
+.toolBar {
+    background-color: white;
+    height: 20%;
+}
+
+.messageBoxSeparator {
+    width: 100%;
+    height: 10%;
+    margin: 0 auto;
+    padding: 0;
+    z-index: 2;
+    background-color: white;
+}
+.messageBoxSeparator > hr {
+    margin: 0 auto;
+    padding: 0;
+    width: 80%;
+}
+
+.messageBox {
+    width: 100%;
+    height: 70%;
+    margin: 0 auto;
+    padding: 2vh;
+    border: none;
+    resize: none;
+    font-size: 1.78vh;
+}
+
+.chatHistory {
+    padding-left: 2vh;
+    padding-right: 2vh;
+    flex-basis: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 70%;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+}
+.msgWrap1, .msgWrap2 {
+    width: 100%;
+}
+.msgWrap1 > div, .msgWrap2 > div {
+    width: fit-content;
+    max-width: 70%;
+    min-width: 1%;
+}
+.msgWrap1 > div {
+    border-radius: 2vh 2vh 0 2vh;
+    float: right;
+    clear: both;
+}
+.msgWrap2 > div {
+    border-radius: 2vh 2vh 2vh 0;
+    float: left;
+    clear: both;
+}
+.timeStamp {
+    margin: 0 auto;
+    margin-top: 2vh;
+    padding: 0;
+    flex-basis: 100%;
+    color: gray;
+}
+.timeStamp > p {
+    margin: 0 auto;
+    padding: 0;
+    z-index: 2;
+}
+.msg {
+    width: fit-content;
+    padding: 1vh;
+    box-shadow: 0 0 2vh rgba(0, 0, 0, 0.5);
+}
+.msg > p {
+    margin: 0 auto;
+    padding: 0;
+    white-space: pre-wrap;
+}

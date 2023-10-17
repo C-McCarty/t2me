@@ -1,0 +1,39 @@
+.emojiButton {
+    margin: 0 auto;
+    padding: 0;
+    user-select: none;
+    font-size: 1.78rem;
+    flex-basis: 10%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+.emojiButton:hover {
+    background-color: rgb(200, 200, 200);
+}
+.emojiButton > * {
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+}
+
+.listWrapper {
+    margin: 0 auto;
+    padding: 0;
+    border: 1px solid black;
+    border-radius: 1.5rem 0 0 1.5rem;
+    width: 25vw;
+    height: 25.5rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.emojiMenu {
+    width: 30rem;
+    height: 25.5rem;
+    padding: 1rem;
+    border-radius: 2rem 0 0 2rem;
+    border: 1px solid black;
+}

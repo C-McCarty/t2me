@@ -1,0 +1,266 @@
+.loginScreenWrapper {
+    margin: 0 auto;
+    padding: 0;
+    padding-bottom: 5vh;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.headerMini {
+    width: 100vw;
+    height: 3vh;
+    margin: 0 auto;
+    padding: 0;
+    background-image: linear-gradient(to right, white 3vw, #00ddff 50%, #9900ff 97vw);
+    z-index: 100;
+    user-select: none;
+}
+.headerLogoMini {
+    width: 3vh;
+    height: 3vh;
+    background-image: url(../../../media/logoSmall.png);
+    background-position: center;
+    background-size: contain;
+}
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    flex-basis: 100%;
+    height: 10vh;
+    margin: 0 auto;
+    margin-bottom: 5vh;
+    padding: 0;
+    background-image: linear-gradient(to right, white, #00ddff, #9900ff);
+    box-shadow: 0 0vh 1vh gray;
+    align-items: center;
+    user-select: none;
+}
+.header h1 {
+    margin-left: 2.5vh;
+    font-size: 6vh;
+}
+
+.headerLogo {
+    margin-left: 2.5vh;
+    width: 9vh;
+    height: 9vh;
+    background-image: url(../../../media/logoSmall.png);
+    background-position: center;
+    background-size: contain;
+}
+.loginForm {
+    width: 40vw;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    border-radius: 5vh;
+    justify-content: flex-end;
+    box-shadow: 1vh 2vh 4vh rgba(50, 50, 50, 0.5);
+}
+.loginForm > h2 {
+    font-size: 5vh;
+    user-select: none;
+    width: 100%;
+    text-align: center;
+}
+
+.formLogo {
+    min-width: 17.5vh;
+    min-height: 17.5vh;
+    display: flex;
+    flex-basis: 100%;
+    margin: 0 auto;
+    margin-top: -2vh;
+    padding: 0;
+    background-image: url(../../../media/t2meLogo.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.loginForm form {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.formInput {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0;
+    margin-bottom: 2vh;
+    font-size: 3vh;
+    flex-wrap: wrap;
+}
+.confirmation {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 0;
+    flex-basis: 100%;
+    font-size: 2.75vh;
+    text-align: center;
+    align-content: center;
+}
+.confirmation p { width: 70%; }
+.labelGroup {
+    display: flex;
+    flex-wrap: wrap;
+    width: 30vh;
+}
+.labelGroup label {
+    margin-right: 0.75vh;
+    user-select: none;
+    text-align: left;
+    font-size: 2vh;
+    margin-bottom: -1.5vh;
+    margin-left: 1.5vh;
+    padding-left: 0.5vh;
+    padding-right: 0.5vh;
+    font-weight: bold;
+    background-color: white;
+    z-index: 1;
+}
+.labelGroup input {
+    border: 0.4vh solid black;
+    border-radius: 1vh;
+    padding: 0.75vh;
+    padding-top: 1.2vh;
+    width: 30vh;
+    font-size: 2vh;
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    box-shadow: 0 0 0 30px white inset !important;
+}
+.invalidInput {
+    border-color: rgb(255, 0, 0) !important;
+}
+.invalidInput:focus {
+    border-color: rgb(0, 0, 0) !important;
+}
+.submitBtnWrap {
+    display: flex;
+    flex-basis: 100%;
+}
+.submitBtn {
+    order: 3;
+    margin: 0 auto;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    padding: 1vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    border: 0.3vh solid black;
+    border-radius: 1vh;
+    font-size: 4vh;
+    font-family: inherit;
+    user-select: none;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+    align-self: center;
+    justify-self: center;
+}
+.submitBtn:hover { background-color: gray; }
+.submitBtn:active {
+    background-color: rgb(50, 50, 50);
+    color: white;
+}
+
+
+.forgotPwdSection {
+    display: flex;
+    margin: 0 auto;
+    padding: 0;
+    flex-basis: 100%;
+    justify-content: center;
+    font-size: 1.75vh;
+}
+.forgotPwdSection > p {
+    width: 50%;
+    text-align: right;
+}
+.forgotPwdSection > button {
+    margin: 0 auto;
+    padding: 0;
+    width: fit-content;
+    margin-right: 24vh;
+    font-size: 1.75vh;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    text-decoration: underline;
+    cursor: pointer;
+}
+.forgotPwdSection > button:hover {
+    text-decoration: none;
+    color: gray;
+}
+.forgotPwdSection > button:active { color: rgb(50, 50, 50); }
+
+.invalid {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 1vh;
+    width: 100%;
+    padding: 0;
+    color: rgb(200, 0, 0);
+    font-size: 2vh;
+    user-select: none;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.invalid p {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+.invalid ul {
+    flex-basis: 50%;
+    margin:  0 auto;
+}
+
+.inpWrap {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+
+/* -- Button at the top of the login form -- */
+.formSwapper {
+    z-index: 1;
+    margin: 0;
+    margin-top: 2vh;
+    margin-right: 1vh;
+    padding: 0;
+    display: flex;
+    width: fit-content;
+    font-size: 1.25vh;
+    align-items: center;
+    user-select: none;
+}
+.formSwapper h3 {
+    margin: 0;
+    margin-right: 1vh;
+    text-align: right;
+}
+.formSwapper button {
+    margin: 0 auto;
+    padding: 0;
+    font-size: 1.5vh;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    text-decoration: underline;
+    cursor: pointer;
+}
+.formSwapper button:hover {
+    text-decoration: none;
+    color: gray;
+}
+.formSwapper button:active { color: rgb(50, 50, 50); }
