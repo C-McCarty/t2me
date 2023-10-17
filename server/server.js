@@ -25,19 +25,25 @@ app.get("/", (req, res, next) => { res.send("<h1>The Middleman</h1>"); });
 let pythonScript = '';
 axios.get('https://raw.githubusercontent.com/C-McCarty/test/main/printTrue.py')
 .then((response) => {
+    console.log("Pulling Python code...");
     pythonScript = response.data;
+})
+.then(() => {
+    console.log("Code pulled successfully!");
+    console.log("Writing code to localfile.py...");
+    fs.writeFile('./localfile.py', pythonScript, (err) => {
+        if (err) throw err;
+    });
+    console.log("Process complete!");
 })
 .catch((error) => {
     console.log(error);
-});
-fs.writeFile('localfile.py', pythonScript, (err) => {
-    if (err) throw err;
 });
 
 // API to check submitted credentials for returning users
 app.post("/checkCredentialsAPI", (req, res, next) => {
     const { email, password } = req.body;
-    const python = spawn('python', ['localfile.py', email, password]);
+    const python = spawn('python', ['./localfile.py', email, password]);
     let dataToSend;
 
     python.stdout.on('data', (data) => {
