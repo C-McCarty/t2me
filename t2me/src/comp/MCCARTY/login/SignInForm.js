@@ -151,7 +151,7 @@ function SignInForm({setUser, setPassword, setUserID, isSignedIn}) {
                 console.log(data.validCredentials);
                 setBackendValidated(data.validCredentials);
                 setLoading(false);
-                if (!backendValidated) {
+                if (data.validCredentials === false) {
                     setValidPwd([validPwd[0],validPwd[1],validPwd[2],validPwd[3],validPwd[4],false]);
                     return;
                 }
