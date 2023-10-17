@@ -148,6 +148,7 @@ function SignInForm({setUser, setPassword, setUserID, isSignedIn}) {
                 return response.json();
             }).then((data) => {
                 console.log(data);
+                console.log(data.validCredentials);
                 setBackendValidated(data.validCredentials);
                 setLoading(false);
                 if (!backendValidated) {
