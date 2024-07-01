@@ -4,6 +4,6 @@ This capstone project was created for ITSE-2374 at Collin College. The code incl
 
 All rights reserved.
 
-Frontend: Cameron McCarty and Cameron Baumert
+Frontend: Cameron McCarty, Cameron Baumert, and Valen Tran
 
 Backend: Grace Padgett and Cameron McCarty
